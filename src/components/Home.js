@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
 import { Button } from '@mui/material';
 import '../style/home.css'
 
 function Home() {
     const githubUri = "https://api.github.com/users/";
-    const [userRepo, setuserRepo] = useState('');
+    const [userRepo, setUserRepo] = useState([ ]);
     const [userName, setuserName] = useState('');
     const [userDetails, setUserDetails] = useState('');
 
@@ -19,8 +18,9 @@ function Home() {
     const getGithubRepos = async () => {
         const repos = await fetch(userDetails.repos_url);
         const repo = await repos.json();
-        console.log(repo);
-        setuserRepo(repo);
+        console.log(repo,25);
+        setUserRepo(repo);
+        console.log(userRepo,89)
     }
 
     return (
@@ -41,7 +41,7 @@ function Home() {
                     <div className="user-name"><h1>Name: <span>{userDetails.name}</span></h1></div>
                     <div className="user-bio"><h1>Bio: <span>{userDetails.bio}</span></h1></div>
                     <div className="user-location"><h1>Location: <span>{userDetails.location}</span></h1> </div>
-                    <div className="user-url"><h1>GitHub url: <span> <a href={userDetails.html_url}>{userDetails.html_url}</a></span></h1> </div>
+                    <div className="user-url"><h1>GitHub url: <span> <a href={userDetails.html_url} target="_blank" rel="noopener noreferrer">{userDetails.html_url}</a></span></h1> </div>
                     <div className="user-content mt-2">
                         <button type='button' onClick={getGithubRepos}>Repository({userDetails.public_repos})</button>
                         <button type='button'>Followers({userDetails.followers})</button>
@@ -49,6 +49,25 @@ function Home() {
                     </div>
                 </div>
             </div> : ''}
+                <h3 className="my-3">Your Repository</h3>
+                {userRepo==='' ? <p>Click repository button</p>:''}
+            <div className='main-repos-page'>
+                {userRepo.map((repo) => {
+                    return <>
+                    <div className="user-repo my-3">
+                        <h3>Branch: <span>{repo.default_branch}</span></h3>
+                        <p>Name: <span>{repo.name}</span></p>
+                        <p>Description: <span>{repo.description}</span></p>
+                        <div className="language">
+                        <p>Language: <span>{repo.language}</span></p>
+                        <p>Type: <span>{repo.visibility}</span></p>
+                        </div>
+                        <p>Created at: <span>{repo.created_at}</span></p>
+                        <a href={repo.clone_url} target="_blank" rel="noopener noreferrer">{repo.clone_url}</a>
+                    </div>
+                    </>
+                })}
+            </div>
         </div>
     )
 }

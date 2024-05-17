@@ -1,6 +1,5 @@
 import './App.css';
 import Home from './components/Home';
-import Repository from './components/Repository';
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,7 +12,6 @@ function App() {
           <div className="container">
             <Routes>
               <Route path='/' element={<Home/>}/>
-              <Route path='/repository' element={<Repository/>}/>
             </Routes>
           </div>
         </Router>
