@@ -1,0 +1,56 @@
+.container {
+    height: 95vh;
+    width: 100vw;
+}
+
+.search-user {
+    display: flex;
+}
+.search-user img{
+    height: 40px;
+    width: 40px;
+}
+.heading{
+    width: 100%;
+    margin: 25px 0px;
+
+}
+.heading h2{
+    text-align: center;
+}
+
+.profile {
+    display: grid;
+    height: auto;
+    width: 100%;
+    grid-template-columns: 1fr 2fr;
+    gap: 5px;
+    border: 1px solid black;
+    padding: 10px;
+}
+.profile-image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-image img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+.profile-user-details div{
+    display: flex;
+}
+
+.profile-user-details div h1{
+    font-size: 18px;
+}
+
+.profile-user-details div h1 span{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.user-content button{
+ margin-right: 10px;
+}
